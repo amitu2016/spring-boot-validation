@@ -1,0 +1,50 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Form</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col-md-6 offset-md-3">
+				<form th:action="@{/process}" method="post" th:object="${loginData}">
+					<h1 class="text-center">Register here</h1>
+					<div class="mb-3">
+						<label for="exampleInputEmail1" class="form-label">User
+							Name </label> <input type="text" class="form-control"
+							th:classappend="${#fields.hasErrors('userName')?'is-invalid':''}"
+							th:value="${loginData.userName}" id="userName" name="userName"
+							aria-describedby="emailHelp">
+						<div th:each="e : ${#fields.errors('userName')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
+							Please provide a valid city.
+							
+						</div>
+
+					</div>
+					<div class="mb-3">
+						<label for="exampleInputPassword1" class="form-label">Email
+							Id</label> <input type="email" class="form-control" id="email"
+							th:value="${loginData.email}" name="email">
+					</div>
+					<div class="mb-3 form-check">
+						<input type="checkbox" class="form-check-input" id="exampleCheck1">
+						<label class="form-check-label" for="exampleCheck1">Check
+							me out</label>
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
